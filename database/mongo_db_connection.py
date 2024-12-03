@@ -8,8 +8,11 @@ from pymongo.results import UpdateResult
 
 class MongoDBManager:
     def __init__(self):
-        username = quote_plus("hammad")  
-        password = quote_plus("LOVE@mongodb1")
+        load_dotenv()
+        username = os.getenv("MONGO_USER") 
+        password = os.getenv("MONGO_PASSWORD")
+        username = quote_plus(username)
+        password = quote_plus(password)
         self.mongo_url = f"mongodb+srv://{username}:{password}@cosmocloudcluster.4ttfw.mongodb.net/?retryWrites=true&w=majority&appName=cosmoCloudCluster"
         self.client = None
         self.db = None
